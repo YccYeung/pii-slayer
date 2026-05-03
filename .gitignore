@@ -1,7 +1,8 @@
 __pycache__/
 *.pyc
+.venv/
 pii-slayer/
-*.egg-info/
-
+.env
+node_modules/
+dist/
 .DS_Store
-Thumbs.db
