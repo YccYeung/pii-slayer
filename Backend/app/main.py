@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
 
 app = FastAPI()
+version = "v1"
 
 app.add_middleware(
     CORSMiddleware,
@@ -12,4 +13,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router, prefix="/api/v1")
+app.include_router(router, prefix=f"/api/{version}")

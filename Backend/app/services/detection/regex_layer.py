@@ -30,7 +30,7 @@ class RegexDetection(BaseDetection):
                 confidence = 100.0,
                 layer = DetectionLayer.REGEX   
             )
-            for phone in re.finditer(r"\b0[0-9]{10}\b|\b0[0-9]{4} [0-9]{3} [0-9]{3}\b|\+44\s?[0-9]{4}\s?[0-9]{6}|\(0\)[0-9]{10}", text)
+            for phone in re.finditer(r"\b0[0-9]{10}\b|\b0[0-9]{4} [0-9]{3} [0-9]{3}\b|\+44\s?[0-9]{4}\s?[0-9]{3}\s?[0-9]{3}|\(0\)[0-9]{10}", text)
         ]
     
     def ni_parse(self, text: str) -> list[PIIEntity]:
