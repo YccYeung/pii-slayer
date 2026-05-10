@@ -30,6 +30,7 @@ class RegexDetection(BaseDetection):
                 confidence = 100.0,
                 layer = DetectionLayer.REGEX   
             )
+            # add regex for +44 {2} {4} {4} and 0{4} {6}
             for phone in re.finditer(r"\b0[0-9]{10}\b|\b0[0-9]{4} [0-9]{3} [0-9]{3}\b|\+44\s?[0-9]{4}\s?[0-9]{3}\s?[0-9]{3}|\(0\)[0-9]{10}", text)
         ]
     
