@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from app.schemas.detection import PIIEntity, DetectionRequest, DetectionResponse
 from app.services.detection.pipeline import Pipeline, get_pipeline
 

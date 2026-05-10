@@ -9,6 +9,7 @@ class PIIType(str, Enum):
     POSTCODE = "POSTCODE"
     CREDIT_CARD = "CREDIT_CARD"
     NI_NUMBER = "NI_NUMBER"
+    ORG = "ORG"
     CONTEXTUAL = "CONTEXTUAL"
 
 class DetectionLayer(str, Enum):
