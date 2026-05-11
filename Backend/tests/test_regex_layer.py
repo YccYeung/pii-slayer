@@ -27,7 +27,7 @@ def test_email_parsing(expected_successful_email, expected_failed_email):
             pii_type = PIIType.EMAIL,
             start = 0,
             end = len(expected_successful_email),
-            confidence = 100.0,
+            confidence = 1.0,
             layer = DetectionLayer.REGEX  
         )
     ]
@@ -57,7 +57,7 @@ def test_phone_parsing(expected_successful_phone_number, expected_failed_phone_n
             pii_type = PIIType.PHONE,
             start = 0,
             end = len(expected_successful_phone_number),
-            confidence = 100.0,
+            confidence = 1.0,
             layer = DetectionLayer.REGEX 
         )
     ]
@@ -87,7 +87,7 @@ def test_ni_number_parsing(expected_successful_ni_number, expected_failed_ni_num
             pii_type = PIIType.NI_NUMBER,
             start = 0,
             end = len(expected_successful_ni_number),
-            confidence = 100.0,
+            confidence = 1.0,
             layer = DetectionLayer.REGEX 
         ) 
    ]
@@ -117,7 +117,7 @@ def test_postal_code_parsing(expected_successful_postal_code, expected_failed_po
             pii_type = PIIType.POSTCODE,
             start = 0,
             end = len(expected_successful_postal_code),
-            confidence = 100.0,
+            confidence = 1.0,
             layer = DetectionLayer.REGEX 
         )  
     ]
@@ -145,7 +145,7 @@ def test_credit_card_parsing(expected_successful_credit_card, expected_failed_cr
             pii_type = PIIType.CREDIT_CARD,
             start = 0,
             end = len(expected_successful_credit_card),
-            confidence = 100.0,
+            confidence = 1.0,
             layer = DetectionLayer.REGEX
         )
     ]

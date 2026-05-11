@@ -14,7 +14,7 @@ class RegexDetection(BaseDetection):
                 pii_type = PIIType.EMAIL,
                 start = email.start(),
                 end = email.end(),
-                confidence = 100.0,
+                confidence = 1.0,
                 layer = DetectionLayer.REGEX  
             )
             for email in re.finditer(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", text, re.IGNORECASE)
@@ -27,11 +27,11 @@ class RegexDetection(BaseDetection):
                 pii_type = PIIType.PHONE,
                 start = phone.start(),
                 end = phone.end(),
-                confidence = 100.0,
+                confidence = 1.0,
                 layer = DetectionLayer.REGEX   
             )
             # add regex for +44 {2} {4} {4} and 0{4} {6}
-            for phone in re.finditer(r"\b0[0-9]{10}\b|\b0[0-9]{4} [0-9]{3} [0-9]{3}\b|\+44\s?[0-9]{4}\s?[0-9]{3}\s?[0-9]{3}|\(0\)[0-9]{10}", text)
+            for phone in re.finditer(r"\b0[0-9]{10}\b|\b0[0-9]{4} [0-9]{3}\s?[0-9]{3}\b|\+44\s?[0-9]{4}\s?[0-9]{3}\s?[0-9]{3}|\(0\)[0-9]{10}|\+44 [0-9]{2}\s?[0-9]{4}\s?[0-9]{4}", text)
         ]
     
     def ni_parse(self, text: str) -> list[PIIEntity]:
@@ -41,7 +41,7 @@ class RegexDetection(BaseDetection):
                 pii_type = PIIType.NI_NUMBER,
                 start = ni.start(),
                 end = ni.end(),
-                confidence = 100.0,
+                confidence = 1.0,
                 layer = DetectionLayer.REGEX   
             )
             for ni in re.finditer(r"\b(?![DFIQUV])[A-Z]{1}(?![DFIQUV])[A-Z]{1}[\s-]?[0-9]{2}[\s-]?[0-9]{2}[\s-]?[0-9]{2}[\s-]?[A-D]\b", text, re.IGNORECASE)
@@ -54,7 +54,7 @@ class RegexDetection(BaseDetection):
                 pii_type = PIIType.POSTCODE,
                 start = postcode.start(),
                 end = postcode.end(),
-                confidence = 100.0,
+                confidence = 1.0,
                 layer = DetectionLayer.REGEX  
             )
             for postcode in re.finditer(r"\b[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}\b", text, re.IGNORECASE)
@@ -67,7 +67,7 @@ class RegexDetection(BaseDetection):
                 pii_type = PIIType.CREDIT_CARD,
                 start = card_number.start(),
                 end = card_number.end(),
-                confidence = 100.0,
+                confidence = 1.0,
                 layer = DetectionLayer.REGEX  
             )
             for card_number in re.finditer(r"\b[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}[\s-]?[0-9]{4}\b", text)
