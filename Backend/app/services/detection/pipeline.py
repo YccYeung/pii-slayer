@@ -16,22 +16,31 @@ class Pipeline():
     def run(self, text: str, mode: RedactionMode) -> DetectionResponse:
         processed_input = self.input_processing(text)
         entities_list = self.regex.detect(processed_input) + self.ner.detect(processed_input) + self.llm.detect(processed_input)
-        entities_list = self.dedplication(entities_list)
+        entities_list = self.deduplication(entities_list)
         if mode == RedactionMode.REDACT:
             return DetectionResponse(
                 original_text = text,
                 redacted_text = self.redactor.redaction(processed_input, entities_list),
                 entities = entities_list,
                 entity_count = len(entities_list)
-        )
+            )
         elif mode == RedactionMode.ANONYMISE:
-            pass
+            return DetectionResponse(
+                original_text = text,
+                redacted_text = self.redactor.anonymization(processed_input, entities_list),
+                entities = entities_list,
+                entity_count = len(entities_list)
+            )
 
     def input_processing(self, text: str) -> str:
         text = text.replace("\n", " ").replace("\t", " ").strip()
         return re.sub("[\s]+", " ", text)
     
-    def dedplication(self, entities: list[PIIEntity]) -> list[PIIEntity]:
+    def deduplication(self, entities: list[PIIEntity]) -> list[PIIEntity]:
+        """
+        Remove overlapping entity spans using a greedy interval approach.
+        Sorts by start index, then keeps the highest confidence entity when spans overlap.
+        """
         entities.sort(key=lambda x : x.start)
         result_list = []
 
