@@ -13,5 +13,3 @@ A three-layer PII detection and redaction tool built with FastAPI, spaCy, and Gr
 ## API Endpoints
 
 ## Known Limitations
-
-## License
