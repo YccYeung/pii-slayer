@@ -79,6 +79,7 @@ class Pipeline():
         Returns:
             list[PIIEntity]: Deduplicated list with no overlapping spans.
         """
+        entities = [e for e in entities if len(e.text) >= 3]
         entities.sort(key=lambda x : x.start)
         result_list = []
 
