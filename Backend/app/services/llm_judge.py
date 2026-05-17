@@ -17,12 +17,8 @@ class LLMJudge():
             # Deterministic output for consistent results
             temperature=0,
             messages=[
-                {
-                    "role": "system", "content": Prompts.LLM_AS_JUDGE,
-                },
-                {
-                    "role": "user", "content": f"Original text: {response.original_text}, Redacted text: {response.redacted_text}, Entities count: {response.entity_count}"
-                }
+                {"role": "system", "content": Prompts.LLM_AS_JUDGE,},
+                {"role": "user", "content": f"Original text: {response.original_text}, Redacted text: {response.redacted_text}, Entities count: {response.entity_count}"}
             ],
             response_format={
                 "type": "json_object"

@@ -1,0 +1,34 @@
+<svg width="100%" viewBox="0 0 680 200" role="img" style="" xmlns="http://www.w3.org/2000/svg">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">PII Slayer logo</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Logo featuring a shield with a slash through a document, text reading PII Slayer</desc>
+
+  <defs>
+    <clipPath id="shieldClip">
+      <path d="M60 32 L100 20 L140 32 L140 90 Q140 130 100 148 Q60 130 60 90 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Shield shape -->
+  <path d="M60 32 L100 20 L140 32 L140 90 Q140 130 100 148 Q60 130 60 90 Z" fill="#f7f6f3" stroke="#1a1814" stroke-width="2.5" style="fill:rgb(247, 246, 243);stroke:rgb(26, 24, 20);color:rgb(255, 255, 255);stroke-width:2.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Document inside shield -->
+  <rect x="78" y="48" width="36" height="46" rx="3" fill="#ffffff" stroke="#1a1814" stroke-width="1.5" clip-path="url(#shieldClip)" style="fill:rgb(255, 255, 255);stroke:rgb(26, 24, 20);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="84" y1="62" x2="108" y2="62" stroke="#c4bdb4" stroke-width="1.5" style="fill:rgb(0, 0, 0);stroke:rgb(196, 189, 180);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="84" y1="70" x2="108" y2="70" stroke="#c4bdb4" stroke-width="1.5" style="fill:rgb(0, 0, 0);stroke:rgb(196, 189, 180);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="84" y1="78" x2="100" y2="78" stroke="#c4bdb4" stroke-width="1.5" style="fill:rgb(0, 0, 0);stroke:rgb(196, 189, 180);color:rgb(255, 255, 255);stroke-width:1.5px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Red slash through document -->
+  <line x1="72" y1="48" x2="136" y2="110" stroke="#d64c1a" stroke-width="4" stroke-linecap="round" clip-path="url(#shieldClip)" style="fill:rgb(0, 0, 0);stroke:rgb(214, 76, 26);color:rgb(255, 255, 255);stroke-width:4px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- PII text -->
+  <text x="168" y="96" font-family="'DM Mono', monospace" font-size="52" font-weight="500" fill="#1a1814" letter-spacing="-1" style="fill:rgb(26, 24, 20);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;DM Mono&quot;, monospace;font-size:52px;font-weight:500;text-anchor:start;dominant-baseline:auto">PII</text>
+
+  <!-- Dot separator -->
+  <circle cx="302" cy="84" r="4" fill="#d64c1a" style="fill:rgb(214, 76, 26);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Slayer text -->
+  <text x="318" y="96" font-family="'DM Sans', sans-serif" font-size="52" font-weight="600" fill="#d64c1a" letter-spacing="-1" style="fill:rgb(214, 76, 26);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;DM Sans&quot;, sans-serif;font-size:52px;font-weight:600;text-anchor:start;dominant-baseline:auto">Slayer</text>
+
+  <!-- Tagline -->
+  <text x="168" y="122" font-family="'DM Mono', monospace" font-size="12" font-weight="400" fill="#7a7168" letter-spacing="0.08em" style="fill:rgb(122, 113, 104);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;DM Mono&quot;, monospace;font-size:12px;font-weight:400;text-anchor:start;dominant-baseline:auto">detect · redact · protect</text>
+</svg>
