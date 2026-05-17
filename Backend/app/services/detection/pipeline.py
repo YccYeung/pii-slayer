@@ -14,6 +14,20 @@ class Pipeline():
         self.redactor = Redactor()     
 
     def run(self, text: str, mode: RedactionMode) -> DetectionResponse:
+        """
+        Orchestrate the full PII detection and redaction pipeline.
+
+        Runs input through all three detection layers (regex, NER, LLM),
+        deduplicates overlapping entities, then applies redaction or anonymisation
+        based on the requested mode.
+
+        Args:
+            text (str): The raw input text to process.
+            mode (RedactionMode): The redaction mode -- REDACT or ANONYMISE.
+
+        Returns:
+            DetectionResponse: Contains original text, redacted text, entities, and count.
+        """
         processed_input = self.input_processing(text)
         entities_list = self.regex.detect(processed_input) + self.ner.detect(processed_input) + self.llm.detect(processed_input)
         entities_list = self.deduplication(entities_list)
@@ -33,13 +47,34 @@ class Pipeline():
             )
 
     def input_processing(self, text: str) -> str:
+        """
+        Sanitise raw input text before pipeline processing.
+
+        Normalises whitespace by replacing newlines and tabs with spaces,
+        strips leading/trailing whitespace, and collapses multiple spaces into one.
+
+        Args:
+            text (str): The raw input text from the API request.
+
+        Returns:
+            str: The sanitised text ready for detection.
+        """
         text = text.replace("\n", " ").replace("\t", " ").strip()
         return re.sub("[\s]+", " ", text)
     
     def deduplication(self, entities: list[PIIEntity]) -> list[PIIEntity]:
         """
         Remove overlapping entity spans using a greedy interval approach.
-        Sorts by start index, then keeps the highest confidence entity when spans overlap.
+
+        Sorts entities by start index, then keeps the highest confidence entity
+        when two spans overlap. Ensures each character position is covered by
+        at most one entity before redaction is applied.
+
+        Args:
+            entities (list[PIIEntity]): List of detected entities from all layers.
+
+        Returns:
+            list[PIIEntity]: Deduplicated list with no overlapping spans.
         """
         entities.sort(key=lambda x : x.start)
         result_list = []

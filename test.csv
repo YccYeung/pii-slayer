@@ -1,0 +1,11 @@
+transaction_id,date,amount,currency,merchant,category,customer_name,customer_email,status,region,device,risk_score,account_id,notes
+TXN001,2026-03-15,250.00,GBP,Amazon,E-commerce,John Smith,john.smith@gmail.com,completed,London,mobile,0.12,ACC-4421,
+TXN002,2026-03-15,45.99,GBP,Tesco,Groceries,,,completed,Manchester,desktop,0.05,ACC-7823,bulk purchase
+TXN003,2026-03-16,1200.00,GBP,Apple Store,Electronics,Sarah Mitchell,s.mitchell@outlook.com,completed,Birmingham,mobile,0.34,ACC-2291,flagged for review
+TXN004,2026-03-16,12.50,GBP,Costa Coffee,Food,,,completed,Leeds,mobile,0.02,ACC-5531,
+TXN005,2026-03-17,89.00,GBP,ASOS,Fashion,,,completed,Bristol,desktop,0.08,ACC-3312,
+TXN006,2026-03-17,3500.00,GBP,Rightmove,Property,James Okafor,j.okafor@company.co.uk,pending,London,desktop,0.78,ACC-8821,high value transaction
+TXN007,2026-03-18,22.00,GBP,Netflix,Subscription,,,completed,London,smart_tv,0.01,ACC-4421,recurring
+TXN008,2026-03-18,650.00,GBP,John Lewis,Home,Priya Mehta,priya.mehta@nhs.net,completed,Edinburgh,mobile,0.45,ACC-6634,
+TXN009,2026-03-19,8.99,GBP,Spotify,Subscription,,,completed,Glasgow,mobile,0.01,ACC-7823,recurring
+TXN010,2026-03-19,175.00,GBP,Boots,Pharmacy,Robert Chen,r.chen@techcorp.co.uk,completed,Northampton,desktop,0.23,ACC-9921,07823456789
