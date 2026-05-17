@@ -103,3 +103,12 @@ Open [http://localhost:3000](http://localhost:3000)
 - LLM layer is non-deterministic — contextual detection results may vary between runs
 - PDF redaction requires text-layer PDFs — scanned images are not supported
 - CSV redaction operates at cell level — partial matches within a cell are not redacted
+
+## Roadmap (v2)
+
+- **User-configurable detection** — let users choose which PII types and layers to enable per request
+- **IP address & MAC address detection** — extend regex layer with network identifier patterns
+- **Docker Compose** — one-command local deployment with all services wired together
+- **Input validation & rate limiting** — file size limits, magic byte validation, API key authentication
+- **Audit logging** — structured logs of detection results without storing input content
+- **LLM provider abstraction** — swappable backend (Groq / Ollama) via environment variable for fully local mode
