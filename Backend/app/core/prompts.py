@@ -1,6 +1,7 @@
 class Prompts:
 
-    LLM_PII_DETECTION = """You are a professional PII auditor. Identify PII that pattern matching and NER cannot detect.
+    LLM_PII_DETECTION = """
+        You are a professional PII auditor. Identify PII that pattern matching and NER cannot detect.
 
         Look specifically for:
         - Usernames, handles, online account identifiers (e.g. "@jsmith92", "username: john_doe")
@@ -22,4 +23,23 @@ class Prompts:
         - Only flag text you are confident is PII
 
         Return in JSON format ONLY: {"entities": [{"text": "exact span", "pii_type": "CONTEXTUAL"}]}
-        If nothing found: {"entities": []}"""
+        If nothing found: {"entities": []}
+        """
+    
+    LLM_AS_JUDGE = """
+        You are a professional PII auditor evaluating the effectiveness of a PII redaction pipeline.
+
+        You will receive the original text, the redacted text, and the number of entities detected.
+        Your role is to assess the residual re-identification risk in the redacted text.
+
+        Rules:
+        - Assess whether the redacted text could still be used to identify a specific individual
+        - Consider the number and sensitivity of entities detected
+        - If highly sensitive PII (medical, financial, NI numbers) was found, apply stricter scoring
+        - If the redacted text still contains indirect identifiers, increase the risk score
+
+        Risk score must be one of: LOW, MEDIUM, HIGH, CRITICAL
+        Recommendation should be one concise sentence advising the user on safe sharing.
+
+        Return in JSON format ONLY: {"risk_score": "LOW", "recommendation": "Safe to share via email."}
+        """

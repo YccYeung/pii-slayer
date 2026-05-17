@@ -14,9 +14,25 @@ class LLMDetection(BaseDetection):
 
     def detect(self, text: str) -> list[PIIEntity]:
         """
-        Layer 3 detection: contextual PII that regex and NER cannot catch.
-        Sends text to Groq LLM and parses structured JSON response.
-        Falls back to empty list on any failure to avoid breaking the pipeline.
+        Perform contextual PII detection using the Groq LLM (Layer 3).
+
+        Sends the input text to the LLM with a structured prompt to identify
+        PII types that regex and NER cannot reliably detect, such as usernames,
+        place of birth, license plates, and protected characteristics.
+
+        LLM-provided character indices are unreliable, so entity positions are
+        recalculated by searching for the matched text in the original input.
+        Any hallucinated entities not found in the original text are discarded.
+
+        Falls back to an empty list on any parsing or API failure to ensure
+        the pipeline continues without interruption.
+
+        Args:
+            text (str): The input text to analyse for contextual PII.
+
+        Returns:
+            list[PIIEntity]: Detected contextual PII entities with recalculated
+                            positions and a fixed confidence score of 0.75.
         """
         llm_response = self.groq.chat.completions.create(
             model="llama-3.3-70b-versatile",
@@ -35,11 +51,11 @@ class LLMDetection(BaseDetection):
             } 
         )
         try: 
-            llm_response = json.loads(llm_response.choices[0].message.content or '{"entities": []}')
+            parsed = json.loads(llm_response.choices[0].message.content or '{"entities": []}')
             entities = []
 
             # LLM-provided indices are unreliable, recalculate from actual text position
-            for entity in llm_response["entities"]:
+            for entity in parsed["entities"]:
                 start = text.find(entity["text"])
                 if start == -1:
                     # Skip hallucinated entities not found in original text

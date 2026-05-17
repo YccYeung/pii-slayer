@@ -3,6 +3,7 @@ from app.services.detection.ner_layer import NERDetection
 from app.services.detection.llm_layer import LLMDetection
 from app.schemas.detection import PIIEntity, RedactionMode, DetectionResponse
 from app.services.redactor import Redactor
+from app.services.llm_judge import LLMJudge
 import re
 
 class Pipeline():
@@ -11,40 +12,42 @@ class Pipeline():
         self.regex = RegexDetection()
         self.ner = NERDetection()
         self.llm = LLMDetection()
-        self.redactor = Redactor()     
+        self.redactor = Redactor()   
+        self.llm_judge = LLMJudge()  
 
     def run(self, text: str, mode: RedactionMode) -> DetectionResponse:
         """
-        Orchestrate the full PII detection and redaction pipeline.
+        Orchestrate the full PII detection, redaction, and risk assessment pipeline.
 
-        Runs input through all three detection layers (regex, NER, LLM),
-        deduplicates overlapping entities, then applies redaction or anonymisation
-        based on the requested mode.
+        Processes input through three detection layers (regex, NER, LLM), deduplicates
+        overlapping entity spans, applies redaction or anonymisation based on the
+        requested mode, then passes the result to the LLM judge for residual risk
+        assessment.
 
         Args:
             text (str): The raw input text to process.
             mode (RedactionMode): The redaction mode -- REDACT or ANONYMISE.
 
         Returns:
-            DetectionResponse: Contains original text, redacted text, entities, and count.
+            DetectionResponse: Contains original text, redacted text, detected entities,
+                            entity count, risk score, and sharability recommendation.
         """
         processed_input = self.input_processing(text)
-        entities_list = self.regex.detect(processed_input) + self.ner.detect(processed_input) + self.llm.detect(processed_input)
-        entities_list = self.deduplication(entities_list)
-        if mode == RedactionMode.REDACT:
-            return DetectionResponse(
-                original_text = text,
-                redacted_text = self.redactor.redaction(processed_input, entities_list),
-                entities = entities_list,
-                entity_count = len(entities_list)
-            )
-        elif mode == RedactionMode.ANONYMISE:
-            return DetectionResponse(
-                original_text = text,
-                redacted_text = self.redactor.anonymization(processed_input, entities_list),
-                entities = entities_list,
-                entity_count = len(entities_list)
-            )
+        entities_list = self.deduplication(self.regex.detect(processed_input) 
+                                           + self.ner.detect(processed_input) 
+                                           + self.llm.detect(processed_input))
+
+        process_methods = {
+           RedactionMode.REDACT: self.redactor.redaction,
+           RedactionMode.ANONYMISE: self.redactor.anonymization
+        }
+
+        return self.llm_judge.judge(DetectionResponse(
+            original_text = text,
+            redacted_text = process_methods[mode](processed_input, entities_list),
+            entities = entities_list,
+            entity_count = len(entities_list) 
+        ))
 
     def input_processing(self, text: str) -> str:
         """

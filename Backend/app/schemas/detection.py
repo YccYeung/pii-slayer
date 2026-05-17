@@ -29,6 +29,12 @@ class PIIEntity(BaseModel):
     confidence: float
     layer: DetectionLayer
 
+class RiskScore(str, Enum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    CRITICAL = "CRITICAL"
+
 class DetectionRequest(BaseModel):
     text: str
     mode: RedactionMode
@@ -38,3 +44,13 @@ class DetectionResponse(BaseModel):
     redacted_text: str
     entities: list[PIIEntity]
     entity_count: int
+    risk_score: RiskScore | None = None
+    recommendation: str | None = None
+
+class FileDetectionResponse(BaseModel):
+    redacted_file: str  # base64 encoded
+    filename: str
+    entity_count: int
+    entities: list[PIIEntity]
+    risk_score: RiskScore | None = None
+    recommendation: str | None = None
